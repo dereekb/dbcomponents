@@ -5,8 +5,8 @@
   "prefix": "app",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/apps/demo"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/apps/demo"],
       "options": {
         "command": "npx nx run demo:build-base",
         "color": true
@@ -102,20 +102,20 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/demo", "./.reports/jest/demo.junit.xml"],
+      "outputs": ["{workspaceRoot}/coverage/apps/demo", "{projectRoot}/.reports/jest/demo.junit.xml"],
       "options": {
         "jestConfig": "apps/demo/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "deploy": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx firebase --project=default deploy --only hosting"
       }
     },
     "ci-deploy": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "npx firebase --project=default deploy --only hosting"
       }

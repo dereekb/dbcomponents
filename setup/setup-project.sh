@@ -41,9 +41,9 @@ SOURCE_BRANCH=${DBX_SETUP_PROJECT_BRANCH:-"main"}     # develop or main
 # - Project Details
 PROJECT_NAME=$INPUT_PROJECT_NAME
 NAME=$PROJECT_NAME
-DBX_COMPONENTS_VERSION=${DBX_SETUP_PROJECT_COMPONENTS_VERSION:-"8.15.2"}
-NX_VERSION=${NX_SETUP_VERSIONS:-"14.5.10"}
-ANGULAR_VERSION=${ANGULAR_SETUP_VERSIONS:-"~14.1.2"}
+DBX_COMPONENTS_VERSION=${DBX_SETUP_PROJECT_COMPONENTS_VERSION:-"9.11.13"}
+NX_VERSION=${NX_SETUP_VERSIONS:-"15.0.10"}
+ANGULAR_VERSION=${ANGULAR_SETUP_VERSIONS:-"~14.2.9"}
 
 # The app prefix is used in Angular and Nest classes as the prefix for classes/components
 APP_CODE_PREFIX="$(tr '[:lower:]' '[:upper:]' <<< ${INPUT_CODE_PREFIX:0:1})${INPUT_CODE_PREFIX:1}"
@@ -448,25 +448,25 @@ sed -e "s:ANGULAR_APP_FOLDER:$ANGULAR_APP_FOLDER:g" -e "s:API_APP_FOLDER:$API_AP
 rm ./workspace.json.tmp
 rm ./angular.json
 
-curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/project.json -o ./project.json
+curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/project.template.json -o ./project.json
 
 rm $ANGULAR_APP_FOLDER/project.json
-curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/apps/app/project.json -o $ANGULAR_APP_FOLDER/project.json.tmp
+curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/apps/app/project.template.json .template-o $ANGULAR_APP_FOLDER/project.json.tmp
 sed -e "s:ANGULAR_APP_DIST_FOLDER:$ANGULAR_APP_DIST_FOLDER:g" -e "s:ANGULAR_APP_FOLDER:$ANGULAR_APP_FOLDER:g" -e "s:ANGULAR_APP_NAME:$ANGULAR_APP_NAME:g" -e "s:ANGULAR_APP_PORT:$ANGULAR_APP_PORT:g" $ANGULAR_APP_FOLDER/project.json.tmp > $ANGULAR_APP_FOLDER/project.json
 rm $ANGULAR_APP_FOLDER/project.json.tmp
 
 rm $API_APP_FOLDER/project.json
-curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/apps/api/project.json -o $API_APP_FOLDER/project.json.tmp
+curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/apps/api/project.template.json -o $API_APP_FOLDER/project.json.tmp
 sed -e "s:API_APP_DIST_FOLDER:$API_APP_DIST_FOLDER:g" -e "s:API_APP_FOLDER:$API_APP_FOLDER:g" -e "s:API_APP_NAME:$API_APP_NAME:g" $API_APP_FOLDER/project.json.tmp > $API_APP_FOLDER/project.json
 rm $API_APP_FOLDER/project.json.tmp
 
 rm $ANGULAR_COMPONENTS_FOLDER/project.json
-curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/components/app/project.json -o $ANGULAR_COMPONENTS_FOLDER/project.json.tmp
+curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/components/app/project.template.json -o $ANGULAR_COMPONENTS_FOLDER/project.json.tmp
 sed -e "s:ANGULAR_COMPONENTS_DIST_FOLDER:$ANGULAR_COMPONENTS_DIST_FOLDER:g" -e "s:ANGULAR_COMPONENTS_FOLDER:$ANGULAR_COMPONENTS_FOLDER:g" -e "s:ANGULAR_APP_PREFIX:$ANGULAR_APP_PREFIX:g" -e "s:ANGULAR_COMPONENTS_NAME:$ANGULAR_COMPONENTS_NAME:g" $ANGULAR_COMPONENTS_FOLDER/project.json.tmp > $ANGULAR_COMPONENTS_FOLDER/project.json
 rm $ANGULAR_COMPONENTS_FOLDER/project.json.tmp
 
 rm $FIREBASE_COMPONENTS_FOLDER/project.json
-curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/components/firebase/project.json -o $FIREBASE_COMPONENTS_FOLDER/project.json.tmp
+curl https://raw.githubusercontent.com/dereekb/dbx-components/$SOURCE_BRANCH/setup/templates/components/firebase/project.template.json -o $FIREBASE_COMPONENTS_FOLDER/project.json.tmp
 sed -e "s:FIREBASE_COMPONENTS_DIST_FOLDER:$FIREBASE_COMPONENTS_DIST_FOLDER:g" -e "s:FIREBASE_COMPONENTS_FOLDER:$FIREBASE_COMPONENTS_FOLDER:g" -e "s:FIREBASE_COMPONENTS_NAME:$FIREBASE_COMPONENTS_NAME:g" $FIREBASE_COMPONENTS_FOLDER/project.json.tmp > $FIREBASE_COMPONENTS_FOLDER/project.json
 rm $FIREBASE_COMPONENTS_FOLDER/project.json.tmp
 

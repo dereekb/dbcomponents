@@ -4,8 +4,8 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/packages/firebase"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/firebase"],
       "options": {
         "commands": [
           {
@@ -37,27 +37,27 @@
       }
     },
     "watch": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "./exec-with-emulator.sh 'npx nx run-tests firebase --watch'"
       }
     },
     "test": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "./exec-with-emulator.sh 'npx nx run-tests firebase'"
       }
     },
     "run-tests": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/firebase", "./.reports/jest/firebase.junit.xml"],
+      "outputs": ["{workspaceRoot}/coverage/packages/firebase", "{projectRoot}/.reports/jest/firebase.junit.xml"],
       "options": {
         "jestConfig": "packages/firebase/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "run-all-tests": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
@@ -74,7 +74,7 @@
       }
     },
     "publish-npmjs": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "cd ./dist/packages/firebase && npm publish --access public"
       }

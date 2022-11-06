@@ -4,8 +4,8 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/packages/rxjs"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/rxjs"],
       "options": {
         "command": "npx nx run rxjs:build-base",
         "color": true
@@ -31,14 +31,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/rxjs", "./.reports/jest/rxjs.junit.xml"],
+      "outputs": ["{workspaceRoot}/coverage/packages/rxjs", "{projectRoot}/.reports/jest/rxjs.junit.xml"],
       "options": {
         "jestConfig": "packages/rxjs/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "publish-npmjs": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "cd ./dist/packages/rxjs && npm publish --access public"
       }

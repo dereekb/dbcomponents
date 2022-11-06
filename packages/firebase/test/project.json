@@ -16,14 +16,14 @@
       "dependsOn": []
     },
     "test": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "./exec-with-emulator.sh 'npx nx run-tests firebase-test'"
       }
     },
     "run-tests": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/firebase/test", "./.reports/jest/firebase-test.junit.xml"],
+      "outputs": ["{workspaceRoot}/coverage/packages/firebase/test", "{projectRoot}/.reports/jest/firebase-test.junit.xml"],
       "options": {
         "jestConfig": "packages/firebase/test/jest.config.ts",
         "passWithNoTests": true

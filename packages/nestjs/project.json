@@ -4,8 +4,8 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/packages/nestjs"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/nestjs"],
       "options": {
         "commands": [
           {
@@ -41,14 +41,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/nestjs", "./.reports/jest/nestjs.junit.xml"],
+      "outputs": ["{workspaceRoot}/coverage/packages/nestjs", "{projectRoot}/.reports/jest/nestjs.junit.xml"],
       "options": {
         "jestConfig": "packages/nestjs/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "run-all-tests": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
@@ -69,7 +69,7 @@
       }
     },
     "publish-npmjs": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "cd ./dist/packages/nestjs && npm publish --access public"
       }

@@ -7,13 +7,6 @@
     "packageManager": "npm",
     "defaultCollection": "@nrwl/angular"
   },
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
-    },
-    ".eslintrc.json": "*"
-  },
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/nx-cloud",
@@ -25,25 +18,39 @@
   },
   "targetDefaults": {
     "build": {
-      "dependsOn": ["^build"]
+      "dependsOn": ["^build"],
+      "inputs": ["production", "^production"]
     },
     "run-all-tests": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "inputs": ["default", "^production"]
     },
     "test": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "inputs": ["default", "^production", "{workspaceRoot}/jest.preset.ts", "{workspaceRoot}/jest.setup.angular.ts", "{workspaceRoot}/jest.setup.firebase.ts", "{workspaceRoot}/jest.setup.nestjs.ts", "{workspaceRoot}/jest.setup.node.ts", "{workspaceRoot}/jest.setup.typings.ts", "{workspaceRoot}/jest.resolver.js"]
     },
     "publish": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "inputs": ["default", "^production"]
     },
     "publish-npmjs": {
-      "dependsOn": ["build"]
+      "dependsOn": ["build"],
+      "inputs": ["default", "^production"]
     },
     "deploy": {
       "dependsOn": ["build"]
     },
     "ci-deploy": {
       "dependsOn": ["build"]
+    },
+    "e2e": {
+      "inputs": ["default", "^production"]
+    },
+    "run-tests": {
+      "inputs": ["default", "^production"]
+    },
+    "lint": {
+      "inputs": ["default", "{workspaceRoot}/.eslintrc.json"]
     }
   },
   "generators": {
@@ -71,5 +78,10 @@
     "@nrwl/js": {
       "analyzeSourceFiles": true
     }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*", "sharedGlobals"],
+    "sharedGlobals": [],
+    "production": ["default", "!{projectRoot}/**/?(*.)+(spec|test).[jt]s?(x)?(.snap)", "!{projectRoot}/tsconfig.spec.json", "!{projectRoot}/jest.config.[jt]s", "!{projectRoot}/.eslintrc.json"]
   }
 }

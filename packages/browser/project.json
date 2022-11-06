@@ -4,8 +4,8 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/packages/browser"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/browser"],
       "options": {
         "command": "npx nx run browser:build-base",
         "color": true
@@ -30,14 +30,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/browser"],
+      "outputs": ["{workspaceRoot}/coverage/packages/browser"],
       "options": {
         "jestConfig": "packages/browser/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "publish-npmjs": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "cd ./dist/packages/browser && npm publish --access public"
       }

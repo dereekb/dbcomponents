@@ -4,8 +4,8 @@
   "projectType": "library",
   "targets": {
     "build": {
-      "executor": "@nrwl/workspace:run-commands",
-      "outputs": ["dist/packages/util"],
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/packages/util"],
       "options": {
         "commands": [
           {
@@ -38,14 +38,14 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/packages/util", "./.reports/jest/util.junit.xml"],
+      "outputs": ["{workspaceRoot}/coverage/packages/util", "{projectRoot}/.reports/jest/util.junit.xml"],
       "options": {
         "jestConfig": "packages/util/jest.config.ts",
         "passWithNoTests": true
       }
     },
     "run-all-tests": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           {
@@ -62,7 +62,7 @@
       }
     },
     "publish-npmjs": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "cd ./dist/packages/util && npm publish --access public"
       }
