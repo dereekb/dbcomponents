@@ -49,7 +49,7 @@ export class FirebaseAdminNestTestContextInstance<PI extends FirebaseAdminTestCo
       strict: boolean;
     }
   ): TResult {
-    return this.nest.get(typeOrToken, options);
+    return options ? this.nest.get(typeOrToken, options) : this.nest.get(typeOrToken);
   }
 }
 

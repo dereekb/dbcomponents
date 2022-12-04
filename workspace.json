@@ -27,7 +27,8 @@
     "rxjs": "packages/rxjs",
     "util": "packages/util",
     "util-fetch": "packages/util/fetch",
-    "util-test": "packages/util/test"
+    "util-test": "packages/util/test",
+    "workspace": ""
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"
 }
